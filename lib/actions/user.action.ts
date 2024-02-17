@@ -1,29 +1,30 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import user from "../models/user.model";
+import User from "../models/user.model";
 import connectToDB from "../mongoose";
 
 interface Params {
 	userId: string;
 	username: string;
 	name: string;
-	image: string;
 	bio: string;
+	image: string;
 	path: string;
 }
+
 export async function updateUser({
 	userId,
-	username,
-	name,
-	image,
 	bio,
+	name,
 	path,
+	username,
+	image,
 }: Params): Promise<void> {
-	connectToDB();
-
 	try {
-		await user.findOneAndUpdate(
+		connectToDB();
+
+		await User.findOneAndUpdate(
 			{ id: userId },
 			{
 				username: username.toLowerCase(),
@@ -32,9 +33,7 @@ export async function updateUser({
 				image,
 				onboarded: true,
 			},
-			{
-				upsert: true,
-			}
+			{ upsert: true }
 		);
 
 		if (path === "/profile/edit") {
@@ -42,5 +41,18 @@ export async function updateUser({
 		}
 	} catch (error: any) {
 		throw new Error(`Failed to create/update user: ${error.message}`);
+	}
+}
+
+export async function fetchUser(userId: string) {
+	try {
+		connectToDB();
+		return await User.findOne({ id: userId });
+		// 	.populate({
+		// 	path: "communities",
+		// 	model: Communities,
+		// });
+	} catch (error: any) {
+		throw new Error(`Failed to fetch User: ${error.message}`);
 	}
 }
