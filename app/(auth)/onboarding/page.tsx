@@ -21,7 +21,7 @@ export default async function Page() {
 				Complete your profile now to use Threads
 			</p>
 			<section className="mt-9 bg-dark-2 p-10">
-				<AccountProfile />
+				<AccountProfile user={userData} btnTitle="Continue     " />
 			</section>
 		</main>
 	);
