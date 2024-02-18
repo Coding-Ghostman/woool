@@ -1,7 +1,6 @@
 "use client";
 
 import * as z from "zod";
-import Image from "next/image";
 import { useForm } from "react-hook-form";
 import {
 	Form,
