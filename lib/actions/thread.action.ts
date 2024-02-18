@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import Thread from "../models/thread.model";
 import User from "../models/user.model";
 import connectToDB from "../mongoose";
+import { connect } from "http2";
 
 interface Params {
 	text: string;
@@ -36,4 +37,21 @@ export async function createThread({
 	} catch (error) {
 		throw new Error("Error creating Thread");
 	}
+}
+
+export async function fetchPost(pageNumber = 1, pageSize = 20) {
+	connectToDB();
+
+	const skipAmount = (pageNumber - 1) * pageSize;
+
+	// Search for posts which doesnt have any parentId
+	const postsQuery = Thread.find({ parentId: { $ib: [null, undefined] } })
+		.sort({ createdAt: "desc" })
+		.skip(skipAmount)
+		.limit(pageSize)
+		.populate({ path: "author", model: User })
+		.populate({
+			path: "children",
+			populate: { path: "author", model:User, select:"_id name parentId image" },
+		});
 }
