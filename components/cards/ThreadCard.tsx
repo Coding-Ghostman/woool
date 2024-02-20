@@ -39,7 +39,7 @@ export default function ThreadCard({
 	return (
 		<article
 			className={`flex flex-col w-full rounded-xl  ${
-				isComment ? `bg-dark-2 p-7` : `px-0 xs:px-7`
+				isComment ? `px-0 xs:px-7` : `bg-dark-2 p-7`
 			}`}
 		>
 			<div className="flex items-start justify-between">
@@ -62,7 +62,8 @@ export default function ThreadCard({
 							</h4>
 						</Link>
 						<p className="mt-2 text-small-regular text-light-2">{content}</p>
-						<div className="mt-5 flex flex-col gap-3">
+
+						<div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
 							<div className="flex gap-3.5">
 								<Image
 									src="/assets/heart-gray.svg"
@@ -95,7 +96,7 @@ export default function ThreadCard({
 									className="cursor-pointer object-contain"
 								/>
 							</div>
-							{isComment && comments.length > 0 && (
+							{ comments.length > 0 && (
 								<Link href={`/thread/${id}`}>
 									<p className="mt-1 text-subtle-medium text-gray-1">
 										{comments.length} replies
