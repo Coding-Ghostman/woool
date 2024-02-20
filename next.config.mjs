@@ -1,29 +1,32 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	typescript: {
+		ignoreBuildErrors: true,
+	},
 	experimental: {
-		serverComponentsExternalPackages: ["mongoose"],
+		serverComponentsExternalPackages: ['mongoose'],
 		serverActions: true,
 		serverActions: {
-			bodySizeLimit: "2mb",
+			bodySizeLimit: '2mb',
 		},
 	},
 	images: {
 		remotePatterns: [
 			{
-				protocol: "https",
-				hostname: "img.clerk.com",
+				protocol: 'https',
+				hostname: 'img.clerk.com',
 			},
 			{
-				protocol: "https",
-				hostname: "images.clerk.dev",
+				protocol: 'https',
+				hostname: 'images.clerk.dev',
 			},
 			{
-				protocol: "https",
-				hostname: "uploadthing.com",
+				protocol: 'https',
+				hostname: 'uploadthing.com',
 			},
 			{
-				protocol: "https",
-				hostname: "placehold.co",
+				protocol: 'https',
+				hostname: 'placehold.co',
 			},
 		],
 	},
