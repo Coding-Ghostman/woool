@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { usePathname, useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThreadValidation } from "@/lib/validations/thread";
-import { createThread } from "@/lib/actions/thread.action";
+import { createThread } from "@/lib/actions/thread.actions";
 
 interface Props {
 	userId: string;

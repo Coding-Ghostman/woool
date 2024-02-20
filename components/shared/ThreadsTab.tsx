@@ -1,4 +1,4 @@
-import { fetchUserPosts } from "@/lib/actions/user.action";
+import { fetchUserPosts } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 import ThreadCard from "../cards/ThreadCard";
 import { currentUser } from "@clerk/nextjs";
@@ -30,10 +30,10 @@ export default async function ThreadsTab({
 						accountType === "User"
 							? { name: result.name, image: result.image, id: result.id }
 							: {
-									name: thread.author.name,
-									image: thread.author.image,
-									id: thread.author.id,
-							  }
+								name: thread.author.name,
+								image: thread.author.image,
+								id: thread.author.id,
+							}
 					} // todo
 					community={thread.community} // todo
 					createdAt={thread.createdAt}

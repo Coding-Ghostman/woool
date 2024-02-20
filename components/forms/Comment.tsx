@@ -17,7 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CommentValidation } from "@/lib/validations/thread";
 import { Input } from "../ui/input";
 import Image from "next/image";
-import { addCommentToThread } from "@/lib/actions/thread.action";
+import { addCommentToThread } from "@/lib/actions/thread.actions";
 
 interface Props {
 	threadId: string;

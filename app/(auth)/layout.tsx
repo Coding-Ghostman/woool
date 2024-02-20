@@ -17,7 +17,9 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body className={`${spaceGrotesk.className} bg-dark-1`}>
-					{children}
+					<div className="w-full flex items-center justify-center min-h-screen">
+						{children}
+					</div>
 				</body>
 			</html>
 		</ClerkProvider>
